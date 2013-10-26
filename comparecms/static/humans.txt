@@ -1,0 +1,13 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    James Seppi - developer - @hydrologee
+    Taylor Cook - project manager - @tahititay
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3,
+    jQuery, Modernizr,
+    AngularJS, Bootstrap,

@@ -1,0 +1,62 @@
+
+{% verbatim %}
+
+<h4>
+    {{type | uppercase}} #{{apcDrgId}} - {{procedureName}} for ZIP Code {{zip}}. 
+</h4>
+
+<div class='ajax-load' ng-show="isFetching" ></div>
+
+<p class="text-error" ng-show="hasError">Sorry, no data found for given ZIP code and procedure. <a href="/" title="Try another">Start over.</a></p>
+
+<div ng-hide="hasError || isFetching">
+    
+    <p ng-if="regionReduction" class="lead">
+        On average, hospitals in the same hospital referral region as {{zip}} <strong class="text-info">charge {{regionAvgCharge | currency}}</strong> for your condition/procedure, but are <strong class="text-success">paid {{regionAvgPayment | currency}}</strong> by Medicare.
+        That's a <strong class="text-warning">reduction of {{regionReduction * 100 | number:0}}%</strong>.
+        <br>
+        Before paying for your care, use this information to <strong>negotiate</strong> your hospital bill closer to what Medicare pays for the same services.
+    </p>
+
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Surprised by these results?</strong> Share them with your friends on 
+            <a href="" ng-click="showFacebookShare()" class='share-link'>Facebook</a> and 
+            <a href="" ng-click="showTwitterShare()" class='share-link'>Twitter</a>!
+    </div>
+
+    <p>
+        This chart shows the average charges by hospitals and payments from Medicare for your procedure/condition in the hospital referral region covered by {{zip}}, the state of {{state}}, and in the entire country.
+    </p>
+
+    <div google-chart chart="chart" style="{{chart.cssStyle}}"/>
+    
+    <hr/>
+
+    <table ng-if="regionPaymentInfos" class="table table-condensed table-striped">
+        <caption>
+            This table contains charge and payment data for all providers served by the hospital referral region covering ZIP {{zip}} for your condition/procedure.
+        </caption>
+        <thead>
+            <tr>
+                <th>Provider</th>
+                <th>ZIP</th>
+                <th>Average Charge</th>
+                <th>Average Payment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="p in regionPaymentInfos">
+                <td>{{p.name}}</td>
+                <td>{{p.zip}}</td>
+                <td>{{p.charge_avg | currency}}</td>
+                <td>{{p.pmt_avg | currency}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/#/start/{{type}}/{{zip}}" title="Try another">Search another ZIP code or procedure</a>
+    </p> 
+</div>
+{% endverbatim %}

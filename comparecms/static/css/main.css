@@ -1,0 +1,131 @@
+
+body {
+    background: url('../img/ecailles.png');
+    padding-top: 0;
+}
+
+header {
+    margin-top: 20px;
+}
+
+footer {
+    margin-top: 10px;
+}
+
+nav .nav-links {
+    text-align: right;
+}
+
+a, a:hover {
+    color: steelblue;
+}
+
+header > h1 {
+    font-size: 3.2em;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+.tooltip.in{
+    opacity:1;
+    filter:alpha(opacity=100);
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none;
+}
+
+.span-center {
+	float: none; 
+	margin-left: auto; 
+	margin-right: auto; 
+}
+
+.centered {
+    text-align: center;
+}
+
+.ajax-load {
+    background: url('../img/loading.gif') no-repeat 0 8px;
+    width: 24px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.results-chart {
+    width: 100%;
+    height: 200px;
+}
+
+.main-container {
+    padding: 20px;
+    background: white;
+    border: 12px solid rgba(0,0,0,0.45);
+    border-radius: 5px;
+}
+
+.main-form label.control-label {
+    font-size: 1.3em;
+    text-align: left;
+    margin-bottom: 12px;
+    color: darkslategray;
+}
+
+.main-form .control-group {
+    margin-bottom: 2em;
+}
+
+.main-form input#zip
+{
+    font-size: 40px;
+    line-height: 45px;
+    width: 180px;
+    height: 50px;
+    text-align: center;
+}
+
+.main-form .select2-container
+{
+    font-size: 26px;
+    line-height: 26px;
+    width: 80%;
+}
+
+
+.main-form .select2-container a
+{
+    height: 50px;
+    font-size: 30px;
+    line-height: 48px;
+    background: none;
+}
+
+
+.main-form .select2-container .select2-arrow b {
+    background-position: 0px 12px;
+}
+
+.main-form .select2-container input {
+    height: 40px;
+    line-height: 45px;
+    height: 50px;
+    font-size: 40px;
+    background: url('../img/chosen-sprite.png') no-repeat 0px 20px -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+}
+
+.main-form .select2-container .select2-results {
+    text-align: left;
+}
+
+.share-link {
+    border-bottom: 1px dotted;
+    font-weight: bold;
+}
+
+.share-link:hover {
+    border-bottom: 1px solid;
+    text-decoration: none
+}

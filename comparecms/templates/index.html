@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="container">
+    {% include "_nav.html" %}
+    
+    <header class="centered">
+        <h1>Health Cost Negotiator</h1>
+    </header>
+    
+    <div class="row">
+        <div ng-view></div>        
+    </div>
+
+</div>
+    
+{% endblock %}
+
+{% load compress %}
+{% block morescripts %}
+
+<script type="text/ng-template" id="formView">
+    <div ng-controller="FormCtrl" class="span8 span-center main-container" >
+        <p class="lead">
+            Use this simple tool to <strong>find average Medicare payments</strong> for medical care. 
+            You can then use this valuable information for <strong>negotiating charges</strong> with 
+            your health care provider.
+        </p>
+   
+        {% include "_mainForm.html" %}
+    </div>
+</script>
+
+<script type="text/ng-template" id="resultsView">
+    <div ng-controller="ResultsCtrl" class="span8 span-center main-container" >
+        {% include "_mainResults.html" %}
+    </div>
+</script>
+
+{% compress js %}
+<script src="{{ STATIC_URL }}js/vendor/jquery-1.10.1.min.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/lodash.min.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/angular.min.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/select2.min.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/angular-ui-select2.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/ng-google-chart.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/angulartics.js"></script>
+<script src="{{ STATIC_URL }}js/vendor/angulartics-ga.js"></script>
+<script src="{{ STATIC_URL }}js/ngCmsApp.js"></script>
+{% endcompress %}
+
+{% endblock %}

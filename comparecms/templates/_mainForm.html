@@ -1,0 +1,98 @@
+
+<form class="main-form centered" name="mainForm">
+
+    <div class="control-group">
+        <label class="control-label" for="zip">
+            1. What was the ZIP code of the Hospital or Health Care Provider where you received care?
+        </label>
+        <div class="controls">
+            <input id="zip" name="zip" type="text" autofocus 
+                placeholder="12345" required="" maxlength="5" pattern="([0-9]{5})"
+                ng-model="formVals.zip" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">
+            2. Did you receive <a href="" data-toggle="tooltip" title="Inpatient care takes place while staying in a hospital for over a single day.">inpatient</a> or <a href="" data-toggle="tooltip" title="Outpatients receive care and are then discharged from the Emergency Department or transferred to another facility.">outpatient</a> care?
+        </label>
+        <button class="btn btn-large" 
+            ng-click="formVals.apcdrg='drg'"
+            ng-class="{'active btn-info': formVals.apcdrg == 'drg'}">
+            <i ng-show="formVals.apcdrg=='drg'" class="icon-ok"></i> Inpatient
+        </button>
+        <button class="btn btn-large" 
+            ng-click="formVals.apcdrg='apc'"
+            ng-class="{'active btn-info': formVals.apcdrg == 'apc'}">
+            <i ng-show="formVals.apcdrg=='apc'" class="icon-ok"></i> Outpatient
+        </button>
+    </div>
+    
+    <div ng-show="formVals.apcdrg == 'drg'" class="control-group">
+        <label class="control-label" for="drg">
+            3. What condition did you have treated? (by 
+            <a href="" data-toggle="tooltip" 
+                title="Diagnosis Related Group (DRG) codes are used for Medicare billing. Ask your provider for an applicable DRG code.">
+                DRG
+            </a> code)
+        </label>
+        <div class="controls">
+            <select id="drg" name="drg" ui-select2
+                data-placeholder="Choose a Condition"
+                ng-model="formVals.drg">
+                <option value=""></option>
+                {% for d in drgList %}
+                    <option value="{{d.id}}">{{d.id}} - {{d.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <p class="help-block">
+            DRG codes are used by Medicare to represent the full range of 
+            costs for treating an condition in an inpatient setting. If you don't know the DRG code 
+            that corresponds to your treatment, contact your hospital or health care 
+            provider.
+        </p>
+    </div>
+
+    <div ng-show="formVals.apcdrg == 'apc'" class="control-group">
+        <label class="control-label" for="apc">
+            3. What procedure did you have performed? (by 
+            <a href="" data-toggle="tooltip" 
+                title="Ambulatory Payment Classification (APC) codes are used for Medicare billing. Ask your provider for an applicable APC code">
+                APC
+            </a> code)
+        </label>
+        <div class="controls">
+            <select id="apc" name="apc" ui-select2
+                data-placeholder="Choose a Procedure"
+                ng-model="formVals.apc">
+                <option value=""></option>
+                {% for a in apcList %}
+                    <option value="{{a.id}}">{{a.id}} - {{a.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <p class="help-block">
+            APC codes are used by Medicare to represent the full range of 
+            costs for treating a condition in an outptient setting. 
+            If you don't know the APC code that corresponds to your treatment, 
+            contact your hospital or health care provider.
+        </p>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="submit"></label>
+        <div class="controls">
+            <button type="submit" name="submit" 
+                ng-disabled="!canSubmit(mainForm) || isSubmitting"
+                ng-click="submitForm(mainForm)" 
+                class="btn btn-success btn-large" >
+                Submit 
+            </button>
+        </div>
+    </div>
+    
+    <p class="text-error" ng-show="hasError">
+        Sorry, no data found for given ZIP code and procedure
+    </p>
+</form>

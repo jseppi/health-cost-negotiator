@@ -1,0 +1,22 @@
+# Place deployment-specific settings in here. Rename to local_settings.py
+#Use --settings=local_settings to override the main settings as necessary
+
+from settings import *
+
+DEBUG = False
+COMPRESS_ENABLED = not DEBUG
+TEMPLATE_DEBUG = DEBUG
+
+ADMINS = (
+    ('First Last', 'you@you.com'),
+)
+MANAGERS = ADMINS
+
+ALLOWED_HOSTS = [
+    '.yourdomain.com'
+]
+
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-XXXXXXX-1'
+GOOGLE_ANALYTICS_DOMAIN = 'www.whatever.com'
+
+SECRET_KEY = 'yoursecretkey'
